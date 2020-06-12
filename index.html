@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="LegUp Documentation">
+  <meta name="author" content="">
+  <link rel="icon" href="./favicon.ico">
+
+  <title>LegUp Documentation</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+      scroll-padding: 100px;
+    }
+
+    .my-fixed-top {
+      position: fixed !important;
+      top: 90px !important;
+    }
+  </style>
+
+  <script>
+    $(window).scroll(function () {
+      var hT = $('#scroll-to').offset().top,
+        hH = $('#scroll-to').outerHeight(),
+        wH = $(window).height(),
+        wS = $(this).scrollTop();
+      if (wS > (hT + hH - wH)) {
+        $("#sticky-menu").addClass("my-fixed-top");
+      } else {
+        $("#sticky-menu").removeClass("my-fixed-top");
+      }
+    });
+  </script>
+</head>
+
+<body>
+
+  <header>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top pl-5 pr-5" style="background-color: #f19066;">
+      <a class="navbar-brand" href="#"> <img src="./logo.png" aria-label="logo-image" height="40"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Docs<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://github.com/Liselle-111/Leg-Up" target="blank">Repo</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">Website</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Begin page content -->
+  <main role="main" class="pl-0 pr-0 pl-md-5 pr-md-5 d-flex justify-content-center" style="padding-top: 66px;">
+    <div class="w-75">
+      <div class="col">
+        <!-- Top Row -->
+        <div class="row mt-5">
+          <!-- Left Card -->
+          <div class="col-12 col-md-6 mt-2 mt-md-0">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title mt-1">👾 Welcome to the LegUp documentation...</h5>
+                <p class="card-text mt-4">Below you will find documentation for any of the more complex parts of the
+                  application, alongside a set-up guide, and links to useful resources. Please ensure to add and update
+                  these docs as required.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Right Card -->
+          <div class="col-12 col-md-6 mt-2 mt-md-0">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title mt-1">🔗 Quick Links</h5>
+                <p class="card-text mt-4">
+                <ul>
+                  <li><a href="https://reactnative.dev/docs" target="blank">React Native</a></li>
+                  <li><a href="https://expo.io/tools#client" target="blank">Expo</a></li>
+                  <li><a href="https://reactnavigation.org/docs" target="blank">React Navigation</a></li>
+                  <li><a href="https://callstack.github.io/react-native-paper/" target="blank">React Native Paper</a>
+                  </li>
+                  <li><a href="https://firebase.google.com/docs" target="blank">Firebase</a></li>
+                </ul>
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <!-- Docs Content -->
+        <div class="row border-top mt-4 pt-4 pl-2 pr-2">
+          <!-- Main Column -->
+          <div class="col-12 col-md-9">
+            <section class="mt-4" id="getting-started">
+              <h4>Getting Started</h4>
+              <div class="pl-2 pt-3">
+                <h5 id="pre-setup">Pre-setup</h5>
+                <ul>
+                  <li>You must install expo tools before setting up the project, assuming you have <code>npm</code> or
+                    <code>yarn</code> installed</li>
+                  <li><code>npm install expo-cli --global</code> or <code>yarn global add expo-cli</code></li>
+                </ul>
+                <h5 id="setup">Setup</h5>
+                <ul>
+                  <li><code>git clone git@github.com:Liselle-111/Leg-Up.git</code></li>
+                  <li><code>yarn</code> to install dependencies</li>
+                  <li><code>yarn start</code> Starts the local server</li>
+                  <li><code>?</code> to get more available options</li>
+                </ul>
+                <h5 id="running-device">Running: Device</h5>
+                <ul>
+                  <li>Download <code>expo</code> app from the app store</li>
+                  <li>Android: Scan the barcode that is printed after running <code>yarn start</code></li>
+                  <li>iOS: Login to your expo account on the expo app, the project will be listed after running
+                    <code>yarn start</code></li>
+                  <li>You must have an internet connection</li>
+                </ul>
+                <h5 id="running-simulator">Running: Simulator</h5>
+                <ul>
+                  <li><code>yarn start</code></li>
+                  <li><code>i</code> for iOS or <code>a</code> Android simulators, this will install and run the app
+                  </li>
+                  <li><code>yarn offline</code> - this will allow you to run the simulator without internet</li>
+                </ul>
+                <h5 id="running-web">Running: Web</h5>
+                <ul>
+                  <li><code>yarn web</code></li>
+                </ul>
+              </div>
+            </section>
+            <section class="mt-5" id="project-structure">
+              <h4 id="scroll-to" class="title">Project Structure</h4>
+              <div class="pl-2 pt-3">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a elit eu ante gravida aliquet
+                  dignissim non urna. Suspendisse et magna et elit rhoncus egestas. Donec vitae volutpat eros. Vivamus
+                  tincidunt sagittis volutpat. Donec commodo ligula sit amet arcu blandit, id cursus orci consectetur.
+                  Phasellus varius nibh eu eros vehicula vestibulum. Aenean accumsan, quam nec molestie rhoncus, tellus
+                  risus egestas metus, nec mollis libero odio id lectus. Etiam dictum eget neque et pellentesque. Donec
+                  sollicitudin lobortis sapien, et semper velit elementum quis. Integer sed varius orci. Proin vulputate
+                  velit et orci varius, malesuada dignissim magna aliquam. Nam risus urna, ullamcorper at volutpat vel,
+                  mattis id arcu.
+
+                  Aenean dignissim tellus mauris, eget dictum orci placerat sed. Aliquam maximus finibus odio, sed
+                  viverra
+                  purus consequat et. Sed lacinia a augue vitae lobortis. Cras id sapien rutrum, vestibulum mi id,
+                  vehicula neque. Aenean gravida nisl vel interdum tincidunt. Quisque volutpat luctus porttitor.
+                  Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Cras sagittis,
+                  diam nec aliquet bibendum, nunc orci pretium lorem, vitae pretium tortor leo in augue. Cras euismod
+                  molestie erat, non vulputate ipsum placerat eget. Praesent at justo placerat, tristique neque
+                  elementum,
+                  congue arcu. Proin ut dui nibh. Phasellus ante arcu, dignissim vitae tincidunt eget, aliquam id
+                  lectus.
+                </p>
+              </div>
+            </section>
+            <section class="mt-5" id="firebase">
+              <h4 class="title">Firebase</h4>
+              <div class="pl-2 pt-3">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a elit eu ante gravida aliquet
+                  dignissim non urna. Suspendisse et magna et elit rhoncus egestas. Donec vitae volutpat eros. Vivamus
+                  tincidunt sagittis volutpat. Donec commodo ligula sit amet arcu blandit, id cursus orci consectetur.
+                  Phasellus varius nibh eu eros vehicula vestibulum. Aenean accumsan, quam nec molestie rhoncus, tellus
+                  risus egestas metus, nec mollis libero odio id lectus. Etiam dictum eget neque et pellentesque. Donec
+                  sollicitudin lobortis sapien, et semper velit elementum quis. Integer sed varius orci. Proin vulputate
+                  velit et orci varius, malesuada dignissim magna aliquam. Nam risus urna, ullamcorper at volutpat vel,
+                  mattis id arcu.
+
+                  Aenean dignissim tellus mauris, eget dictum orci placerat sed. Aliquam maximus finibus odio, sed
+                  viverra
+                  purus consequat et. Sed lacinia a augue vitae lobortis. Cras id sapien rutrum, vestibulum mi id,
+                  vehicula neque. Aenean gravida nisl vel interdum tincidunt. Quisque volutpat luctus porttitor.
+                  Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Cras sagittis,
+                  diam nec aliquet bibendum, nunc orci pretium lorem, vitae pretium tortor leo in augue. Cras euismod
+                  molestie erat, non vulputate ipsum placerat eget. Praesent at justo placerat, tristique neque
+                  elementum,
+                  congue arcu. Proin ut dui nibh. Phasellus ante arcu, dignissim vitae tincidunt eget, aliquam id
+                  lectus.
+                </p>
+              </div>
+
+            </section>
+            <section class="mt-5" id="navigation">
+              <h4 class="title">Navigation</h4>
+              <div class="pl-2 pt-3">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a elit eu ante gravida aliquet
+                  dignissim non urna. Suspendisse et magna et elit rhoncus egestas. Donec vitae volutpat eros. Vivamus
+                  tincidunt sagittis volutpat. Donec commodo ligula sit amet arcu blandit, id cursus orci consectetur.
+                  Phasellus varius nibh eu eros vehicula vestibulum. Aenean accumsan, quam nec molestie rhoncus, tellus
+                  risus egestas metus, nec mollis libero odio id lectus. Etiam dictum eget neque et pellentesque. Donec
+                  sollicitudin lobortis sapien, et semper velit elementum quis. Integer sed varius orci. Proin vulputate
+                  velit et orci varius, malesuada dignissim magna aliquam. Nam risus urna, ullamcorper at volutpat vel,
+                  mattis id arcu.
+
+                  Aenean dignissim tellus mauris, eget dictum orci placerat sed. Aliquam maximus finibus odio, sed
+                  viverra
+                  purus consequat et. Sed lacinia a augue vitae lobortis. Cras id sapien rutrum, vestibulum mi id,
+                  vehicula neque. Aenean gravida nisl vel interdum tincidunt. Quisque volutpat luctus porttitor.
+                  Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Cras sagittis,
+                  diam nec aliquet bibendum, nunc orci pretium lorem, vitae pretium tortor leo in augue. Cras euismod
+                  molestie erat, non vulputate ipsum placerat eget. Praesent at justo placerat, tristique neque
+                  elementum,
+                  congue arcu. Proin ut dui nibh. Phasellus ante arcu, dignissim vitae tincidunt eget, aliquam id
+                  lectus.
+                </p>
+              </div>
+
+            </section>
+            <section class="mt-5" id="styling">
+              <h4 class="title">Styling</h4>
+              <div class="pl-2 pt-3">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a elit eu ante gravida aliquet
+                  dignissim non urna. Suspendisse et magna et elit rhoncus egestas. Donec vitae volutpat eros. Vivamus
+                  tincidunt sagittis volutpat. Donec commodo ligula sit amet arcu blandit, id cursus orci consectetur.
+                  Phasellus varius nibh eu eros vehicula vestibulum. Aenean accumsan, quam nec molestie rhoncus, tellus
+                  risus egestas metus, nec mollis libero odio id lectus. Etiam dictum eget neque et pellentesque. Donec
+                  sollicitudin lobortis sapien, et semper velit elementum quis. Integer sed varius orci. Proin vulputate
+                  velit et orci varius, malesuada dignissim magna aliquam. Nam risus urna, ullamcorper at volutpat vel,
+                  mattis id arcu.
+
+                  Aenean dignissim tellus mauris, eget dictum orci placerat sed. Aliquam maximus finibus odio, sed
+                  viverra
+                  purus consequat et. Sed lacinia a augue vitae lobortis. Cras id sapien rutrum, vestibulum mi id,
+                  vehicula neque. Aenean gravida nisl vel interdum tincidunt. Quisque volutpat luctus porttitor.
+                  Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Cras sagittis,
+                  diam nec aliquet bibendum, nunc orci pretium lorem, vitae pretium tortor leo in augue. Cras euismod
+                  molestie erat, non vulputate ipsum placerat eget. Praesent at justo placerat, tristique neque
+                  elementum,
+                  congue arcu. Proin ut dui nibh. Phasellus ante arcu, dignissim vitae tincidunt eget, aliquam id
+                  lectus.
+                </p>
+              </div>
+
+            </section>
+            <section class="mt-5" id="linting">
+              <h4 class="title">Linting and Code Quality</h4>
+              <div class="pl-2 pt-3">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a elit eu ante gravida aliquet
+                  dignissim non urna. Suspendisse et magna et elit rhoncus egestas. Donec vitae volutpat eros. Vivamus
+                  tincidunt sagittis volutpat. Donec commodo ligula sit amet arcu blandit, id cursus orci consectetur.
+                  Phasellus varius nibh eu eros vehicula vestibulum. Aenean accumsan, quam nec molestie rhoncus, tellus
+                  risus egestas metus, nec mollis libero odio id lectus. Etiam dictum eget neque et pellentesque. Donec
+                  sollicitudin lobortis sapien, et semper velit elementum quis. Integer sed varius orci. Proin vulputate
+                  velit et orci varius, malesuada dignissim magna aliquam. Nam risus urna, ullamcorper at volutpat vel,
+                  mattis id arcu.
+
+                  Aenean dignissim tellus mauris, eget dictum orci placerat sed. Aliquam maximus finibus odio, sed
+                  viverra
+                  purus consequat et. Sed lacinia a augue vitae lobortis. Cras id sapien rutrum, vestibulum mi id,
+                  vehicula neque. Aenean gravida nisl vel interdum tincidunt. Quisque volutpat luctus porttitor.
+                  Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Cras sagittis,
+                  diam nec aliquet bibendum, nunc orci pretium lorem, vitae pretium tortor leo in augue. Cras euismod
+                  molestie erat, non vulputate ipsum placerat eget. Praesent at justo placerat, tristique neque
+                  elementum,
+                  congue arcu. Proin ut dui nibh. Phasellus ante arcu, dignissim vitae tincidunt eget, aliquam id
+                  lectus.
+                </p>
+              </div>
+
+            </section>
+          </div>
+          <!-- Page Content List -->
+          <div class="col-12 col-md-3 pl-4 d-none d-md-inline h-100">
+            <div id="sticky-menu" class="p-4">
+              <!-- Getting Started -->
+              <p class="m-0 p-0"><a href="#getting-started">Getting Started</a></p>
+              <p class="font-italic m-0 p-0 pl-2"><a href="#pre-setup">Pre-setup</a></p>
+              <p class="font-italic m-0 p-0 pl-2"><a href="#setup">Setup</a></p>
+              <p class="font-italic m-0 p-0 pl-2"><a href="#running-device">Running: Device</a></p>
+              <p class="font-italic m-0 p-0 pl-2"><a href="#running-simulator">Running: Simulator</a></p>
+              <p class="font-italic m-0 p-0 pl-2"><a href="#running-web">Running: Web</a></p>
+              <!-- Project Structure -->
+              <p class="m-0 p-0 mt-2"><a href="#project-structure">Project Structure</a></p>
+              <p class="font-italic m-0 p-0 pl-2"><a href="#">Sub-Link</a></p>
+              <!-- Project Structure -->
+              <p class="m-0 p-0 mt-2"><a href="#firebase">Firebase</a></p>
+              <p class="font-italic m-0 p-0 pl-2"><a href="#">Sub-Link</a></p>
+              <!-- Project Structure -->
+              <p class="m-0 p-0 mt-2"><a href="#navigation">Navigation</a></p>
+              <p class="font-italic m-0 p-0 pl-2"><a href="#">Sub-Link</a></p>
+              <!-- Project Structure -->
+              <p class="m-0 p-0 mt-2"><a href="#styling">Styling</a></p>
+              <p class="font-italic m-0 p-0 pl-2"><a href="#">Sub-Link</a></p>
+              <!-- Project Structure -->
+              <p class="m-0 p-0 mt-2"><a href="#linting">Linting</a></p>
+              <p class="font-italic m-0 p-0 pl-2"><a href="#">Sub-Link</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="footer w-100 bg-dark pt-3 pb-3">
+    <div class="container text-center">
+      <span class="text-muted">Copyright LegUp ©2020</span>
+    </div>
+  </footer>
+</body>
+
+</html>

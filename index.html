@@ -37,6 +37,35 @@
       font-weight: bold;
       color: #f19066;
     }
+
+    code {
+      color: #f16682;
+    }
+
+    a {
+      color: #f19066;
+    }
+
+    a:hover {
+      color: #f19066;
+      font-weight: bold;
+    }
+
+    pre {
+      border-width: 1px;
+      border-style: solid;
+      border-radius: 10px;
+      border-color: grey;
+    }
+
+    h4 {
+      border-top: 1px solid #cccccc;
+      padding-top: 40px;
+    }
+
+    h5 {
+      opacity: 0.95;
+    }
   </style>
 
   <script>
@@ -223,25 +252,66 @@
             <section class="mt-5" id="navigation">
               <h4 class="title">Navigation</h4>
               <div class="pl-2 pt-3">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a elit eu ante gravida aliquet
-                  dignissim non urna. Suspendisse et magna et elit rhoncus egestas. Donec vitae volutpat eros. Vivamus
-                  tincidunt sagittis volutpat. Donec commodo ligula sit amet arcu blandit, id cursus orci consectetur.
-                  Phasellus varius nibh eu eros vehicula vestibulum. Aenean accumsan, quam nec molestie rhoncus, tellus
-                  risus egestas metus, nec mollis libero odio id lectus. Etiam dictum eget neque et pellentesque. Donec
-                  sollicitudin lobortis sapien, et semper velit elementum quis. Integer sed varius orci. Proin vulputate
-                  velit et orci varius, malesuada dignissim magna aliquam. Nam risus urna, ullamcorper at volutpat vel,
-                  mattis id arcu.
+                <h5 id="navigator-tsx" class="mt-2">navigator.tsx</h5>
+                <p><code>navigator.tsx</code> contains returns an <a
+                    href="https://reactnavigation.org/docs/4.x/app-containers/"><code>App Container</code></a> which
+                  itself contains an <a
+                    href="https://reactnavigation.org/docs/4.x/animated-switch-navigator/"><code>Animated Switch Navigator</code></a>,
+                  from here on referred to as the Root Navigator. This Root Navigator contains only sub-navigators.
+                  with each subnavigator relating to a specific area of the application.
 
-                  Aenean dignissim tellus mauris, eget dictum orci placerat sed. Aliquam maximus finibus odio, sed
-                  viverra
-                  purus consequat et. Sed lacinia a augue vitae lobortis. Cras id sapien rutrum, vestibulum mi id,
-                  vehicula neque. Aenean gravida nisl vel interdum tincidunt. Quisque volutpat luctus porttitor.
-                  Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Cras sagittis,
-                  diam nec aliquet bibendum, nunc orci pretium lorem, vitae pretium tortor leo in augue. Cras euismod
-                  molestie erat, non vulputate ipsum placerat eget. Praesent at justo placerat, tristique neque
-                  elementum,
-                  congue arcu. Proin ut dui nibh. Phasellus ante arcu, dignissim vitae tincidunt eget, aliquam id
-                  lectus.
+                <figure class="figure w-100">
+                  <pre>
+                    <code>
+      createAnimatedSwitchNavigator(
+        {
+          WelcomeStack: { screen: WelcomeStack },
+          BusinessFeedStack: { screen: BuisnessFeedStack },
+          InvestorFeedStack: { screen: InvestorFeedStack },
+          ...
+        }
+      );</code>
+                  </pre>
+                  <p class="figure-caption">The above shows how the <code>RootNavigator</code> is created. Each route
+                    requires a name (e.g WelcomeStack), along with an object specifying which component should be
+                    returned for said route.</p>
+                </figure>
+
+                As previously mentioned, each route in the Root Navigator is itself a navigator. Each of these
+                sub-navigators contains screens related to a specific section of the application. This allows for
+                navigation between features to be controlled by the Root Navigator, and navigation between screens of
+                the same feature is controlled by <code>this.props.navigation</code>. More information about the
+                navigation prop can be found <a href="https://reactnavigation.org/docs/navigation-prop/">here.</a>
+                </p>
+
+
+                <figure class="figure w-100">
+                  <pre>
+                    <code>
+      const WelcomeStack = createStackNavigator(
+        {
+          Welcome: { screen: Welcome },
+          Login: { screen: Login },
+          Register: { screen: Register },
+        },
+        {
+          initialRouteName: "Welcome",
+          transitionConfig: (nav) => defaultStackTransitions(nav),
+        }
+      );</code>
+                  </pre>
+                  <p class="figure-caption">The above shows how a <code>sub-navigator</code> is created. Each route
+                    requires a name (e.g Welcome, Login etc), along with an object specifying which component should be
+                    returned for said route.</p>
+                </figure>
+
+                <h5 id="RootNavigation-ts" class="mt-2">RootNavigation.ts</h5>
+                <p>
+                  <code>RootNavigation.ts</code> returns an object with several functions relating to the Root
+                  Navigator component. In <code>AppContainer.tsx</code> the <code>RefObject</code> contained in
+                  <code>RootNavigator.ts</code> is assigned to the instance of <code>navigator.tsx</code>. This exposes
+                  the functions of the Root Navigator, and allows us to switch between the subnavigators it contains
+                  from anywhere in the application, simply by importing <code>RootNavigator.ts</code>.
                 </p>
               </div>
 
@@ -318,7 +388,8 @@
               <p class="font-italic m-0 p-0 pl-2"><a href="#">Sub-Link</a></p>
               <!-- Project Structure -->
               <p class="m-0 p-0 mt-2"><a href="#navigation">Navigation</a></p>
-              <p class="font-italic m-0 p-0 pl-2"><a href="#">Sub-Link</a></p>
+              <p class="font-italic m-0 p-0 pl-2"><a href="#navigator-tsx">navigator.tsx</a></p>
+              <p class="font-italic m-0 p-0 pl-2"><a href="#RootNavigation-ts">RootNavigation.ts</a></p>
               <!-- Project Structure -->
               <p class="m-0 p-0 mt-2"><a href="#styling">Styling</a></p>
               <p class="font-italic m-0 p-0 pl-2"><a href="#">Sub-Link</a></p>

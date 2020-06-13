@@ -232,25 +232,76 @@
             <section class="mt-5" id="firebase">
               <h4 class="title">Firebase</h4>
               <div class="pl-2 pt-3">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a elit eu ante gravida aliquet
-                  dignissim non urna. Suspendisse et magna et elit rhoncus egestas. Donec vitae volutpat eros. Vivamus
-                  tincidunt sagittis volutpat. Donec commodo ligula sit amet arcu blandit, id cursus orci consectetur.
-                  Phasellus varius nibh eu eros vehicula vestibulum. Aenean accumsan, quam nec molestie rhoncus, tellus
-                  risus egestas metus, nec mollis libero odio id lectus. Etiam dictum eget neque et pellentesque. Donec
-                  sollicitudin lobortis sapien, et semper velit elementum quis. Integer sed varius orci. Proin vulputate
-                  velit et orci varius, malesuada dignissim magna aliquam. Nam risus urna, ullamcorper at volutpat vel,
-                  mattis id arcu.
+                <h5 id="authentication" class="mt-2">Authentication</h5>
+                <p>
+                  This is a simple service provided by Firebase. In LegUp this is used to handle user creation, login
+                  and authentication of users. One of the more important aspects of this service is that it provides
+                  a guaranteed unique identifier for each user that is registered, this is refferred to as <code>uid</code>
+                  throughout the project. This is the basis of the differentiation of all users throughout the database.
+                  The majority of the heavy lifting is carried out by Firebase and all we have to do is call the appropriate
+                  functions, these can be found in the database service <code>./src/services/database.ts</code>. Currently
+                  the main method of sign up is email and password, however, this can be extended by following the firebase
+                  documentation.
+                </p>
 
-                  Aenean dignissim tellus mauris, eget dictum orci placerat sed. Aliquam maximus finibus odio, sed
-                  viverra
-                  purus consequat et. Sed lacinia a augue vitae lobortis. Cras id sapien rutrum, vestibulum mi id,
-                  vehicula neque. Aenean gravida nisl vel interdum tincidunt. Quisque volutpat luctus porttitor.
-                  Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Cras sagittis,
-                  diam nec aliquet bibendum, nunc orci pretium lorem, vitae pretium tortor leo in augue. Cras euismod
-                  molestie erat, non vulputate ipsum placerat eget. Praesent at justo placerat, tristique neque
-                  elementum,
-                  congue arcu. Proin ut dui nibh. Phasellus ante arcu, dignissim vitae tincidunt eget, aliquam id
-                  lectus.
+                <h5 id="database" class="mt-2">Database</h5>
+                <p>
+                  Firebase database service is a NoSQL database and relies on collections (or tables). Each collection has a
+                  unique name such as <code>users</code> or <code>messages</code> containing uniquely named documents. We
+                  can call any of those collections very easily using the standard web firebase library. We do this by passing a
+                  string variable to the <code>collection()</code> function provided, this is followed by a <code>where()</code>
+                  function that allows passing a simple query. These <code>where()</code> functions can be stacked to enable more complex queries
+                  to be made from the same collection.
+                  <figure class="figure w-100">
+                    <pre>
+                      <code>
+    const uid: string = someUid; // e.g. daQWDASDasdghjdAWe12ASDvb
+
+    DbService.db.collection('users')
+      .where('uid', '==', uid)
+      .where('businessName', '==', 'SpaceX')
+      .get()
+      .then(snapshot => console.log(snapshot));
+                      </code>
+                    </pre>
+                    <p class="figure-caption">The above shows an example query using the standard web Firebase library.</p>
+                  </figure>
+                </p>
+
+                <h5 id="storage" class="mt-2">Storage</h5>
+                <p>
+                  Unfortunately we cannot store any files, including images in the Firebase database service. Instead we are able
+                  to do this using the storage service. The structure and naming convention is a little different to the above
+                  service, it is very much like a standard folder structure on most operating systems. This means that you can
+                  save files in folders, and have folders within folders.
+
+                  When saving any data in the storage service it is important to have a URL reference of that file in the database
+                  service as there is no easy way to retrieve this file later when needed. For example, if a user would store their
+                  profile picture in the storage service, you will be returned a string variable with the URL of the newly stored image.
+                  This string variable should be stored somewhere in the database service e.g. <code>users > daQWDASDasdghjdAWe12ASDvb > profilePicture: 'https://firebase...'</code>.
+                  This can later be directly accessed via the URL, Firebase will ensure to add an authentication layer to this, meaning
+                  only an authenticated user can access this image via the public URL.
+
+                  One thing to note is that Firebase storage does not currently support recursive deletion of any kind. This means that
+                  if you would like to delete a certain file from the service you must know the exact path of that file before you may
+                  attempt a delete action. This also means you cannot simply delete a <code>users</code> folder to remove any documents within.
+                </p>
+              </div>
+
+            </section>
+            <!-- Services -->
+            <section class="mt-5" id="services">
+              <h4 class="title">Services</h4>
+              <div class="pl-2 pt-3">
+                <p>
+                  As described above in the project structure, the bussiness logic is separated from the presentation layer. This is done by
+                  storing all components and page related files in the <code>clients</code> folder and the backend tasks in the <code>services</code>
+                  folder. There are a number of services each separated by area of the app that they control. For example, the <code>Feed.tsx</code> page
+                  will call the <code>feed.ts</code> service in order to fetch the latest data from the database and perform any heavy resource jobs.
+                  Each service is logically named throughout the project, more in-depth information for each service can be found by reading the comments
+                  within the codebase. One of the main advantages of building the application using this structure is that it allows easy migration to an
+                  external API, this should be considered when the application is handling a considerable amount of users. When doing so ensure the implementation
+                  of a <code>controller</code> to mediate between the presentation layer and business logic parts of the system.
                 </p>
               </div>
 
@@ -271,14 +322,15 @@
                 <figure class="figure w-100">
                   <pre>
                     <code>
-      createAnimatedSwitchNavigator(
-        {
-          WelcomeStack: { screen: WelcomeStack },
-          BusinessFeedStack: { screen: BuisnessFeedStack },
-          InvestorFeedStack: { screen: InvestorFeedStack },
-          ...
-        }
-      );</code>
+    createAnimatedSwitchNavigator(
+      {
+        WelcomeStack: { screen: WelcomeStack },
+        BusinessFeedStack: { screen: BuisnessFeedStack },
+        InvestorFeedStack: { screen: InvestorFeedStack },
+        ...
+      }
+    );
+                    </code>
                   </pre>
                   <p class="figure-caption">The above shows how the <code>RootNavigator</code> is created. Each route
                     requires a name (e.g WelcomeStack), along with an object specifying which component should be
@@ -297,17 +349,18 @@
                 <figure class="figure w-100">
                   <pre>
                     <code>
-      const WelcomeStack = createStackNavigator(
-        {
-          Welcome: { screen: Welcome },
-          Login: { screen: Login },
-          Register: { screen: Register },
-        },
-        {
-          initialRouteName: "Welcome",
-          transitionConfig: (nav) => defaultStackTransitions(nav),
-        }
-      );</code>
+    const WelcomeStack = createStackNavigator(
+      {
+        Welcome: { screen: Welcome },
+        Login: { screen: Login },
+        Register: { screen: Register },
+      },
+      {
+        initialRouteName: "Welcome",
+        transitionConfig: (nav) => defaultStackTransitions(nav),
+      }
+    );
+                    </code>
                   </pre>
                   <p class="figure-caption">The above shows how a <code>sub-navigator</code> is created. Each route
                     requires a name (e.g Welcome, Login etc), along with an object specifying which component should be
@@ -400,7 +453,11 @@
               <p class="m-0 p-0 mt-2"><a href="#project-structure">Project Structure</a></p>
               <!-- Firebase -->
               <p class="m-0 p-0 mt-2"><a href="#firebase">Firebase</a></p>
-              <p class="font-italic m-0 p-0 pl-2"><a href="#">Sub-Link</a></p>
+              <p class="font-italic m-0 p-0 pl-2"><a href="#authentication">Authentication</a></p>
+              <p class="font-italic m-0 p-0 pl-2"><a href="#database">Database</a></p>
+              <p class="font-italic m-0 p-0 pl-2"><a href="#storage">Storage</a></p>
+              <!-- Services -->
+              <p class="m-0 p-0 mt-2"><a href="#services">Services</a></p>
               <!-- Navigation -->
               <p class="m-0 p-0 mt-2"><a href="#navigation">Navigation</a></p>
               <p class="font-italic m-0 p-0 pl-2"><a href="#navigator-tsx">navigator.tsx</a></p>

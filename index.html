@@ -32,6 +32,11 @@
       position: fixed !important;
       top: 90px !important;
     }
+
+    .hljs-comment {
+      font-weight: bold;
+      color: #f19066;
+    }
   </style>
 
   <script>
@@ -40,7 +45,7 @@
         hH = $('#scroll-to').outerHeight(),
         wH = $(window).height(),
         wS = $(this).scrollTop();
-      if (wS > (hT + hH - wH)) {
+      if (wS > (hT + hH - wH) && $(window).width() > 966) {
         $("#sticky-menu").addClass("my-fixed-top");
       } else {
         $("#sticky-menu").removeClass("my-fixed-top");
@@ -115,7 +120,8 @@
         <!-- Docs Content -->
         <div class="row border-top mt-4 pt-4 pl-2 pr-2">
           <!-- Main Column -->
-          <div class="col-12 col-md-9">
+          <div class="col-12 col-md-9  order-1 order-md-0">
+            <!-- Getting Started -->
             <section class="mt-4" id="getting-started">
               <h4>Getting Started</h4>
               <div class="pl-2 pt-3">
@@ -153,31 +159,40 @@
                 </ul>
               </div>
             </section>
-            <section class="mt-5" id="project-structure">
+            <!-- Project Structure -->
+            <section id="scroll-to" class="mt-5" id="project-structure">
               <h4 class="title">Project Structure</h4>
-              <div id="scroll-to" class="pl-2 pt-3">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque a elit eu ante gravida aliquet
-                  dignissim non urna. Suspendisse et magna et elit rhoncus egestas. Donec vitae volutpat eros. Vivamus
-                  tincidunt sagittis volutpat. Donec commodo ligula sit amet arcu blandit, id cursus orci consectetur.
-                  Phasellus varius nibh eu eros vehicula vestibulum. Aenean accumsan, quam nec molestie rhoncus, tellus
-                  risus egestas metus, nec mollis libero odio id lectus. Etiam dictum eget neque et pellentesque. Donec
-                  sollicitudin lobortis sapien, et semper velit elementum quis. Integer sed varius orci. Proin vulputate
-                  velit et orci varius, malesuada dignissim magna aliquam. Nam risus urna, ullamcorper at volutpat vel,
-                  mattis id arcu.
-
-                  Aenean dignissim tellus mauris, eget dictum orci placerat sed. Aliquam maximus finibus odio, sed
-                  viverra
-                  purus consequat et. Sed lacinia a augue vitae lobortis. Cras id sapien rutrum, vestibulum mi id,
-                  vehicula neque. Aenean gravida nisl vel interdum tincidunt. Quisque volutpat luctus porttitor.
-                  Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Cras sagittis,
-                  diam nec aliquet bibendum, nunc orci pretium lorem, vitae pretium tortor leo in augue. Cras euismod
-                  molestie erat, non vulputate ipsum placerat eget. Praesent at justo placerat, tristique neque
-                  elementum,
-                  congue arcu. Proin ut dui nibh. Phasellus ante arcu, dignissim vitae tincidunt eget, aliquam id
-                  lectus.
-                </p>
+              <div class="pl-2 pt-3">
+                <pre><code>
+              ├── .eslintrc.<span class="hljs-keyword">js </span>                 <span class="hljs-comment"># Config file for ESLint.</span>
+              ├── .gitignore
+              ├── app.<span class="hljs-keyword">json </span>                     <span class="hljs-comment"># Config file for Expo Application.</span>
+              ├── App.tsx                       <span class="hljs-comment"># Root component.</span>
+              ├── <span class="hljs-keyword">babel.config.js </span>              <span class="hljs-comment"># Babel config file.</span>
+              ├── package.<span class="hljs-keyword">json </span>                 <span class="hljs-comment"># Project Metadata + Dependencies.</span>
+              ├── README.md
+              ├── tsconfig.<span class="hljs-keyword">json </span>                <span class="hljs-comment"># TypeScript config file.</span>
+              ├── yarn.lock                     <span class="hljs-comment"># Yarn file for storing dependencies.</span>
+              ├── assets                        <span class="hljs-comment"># Directory containing multimedia assets for the client.</span>
+              └── src                           <span class="hljs-comment"># Source code directory.</span>
+                  ├── client                    <span class="hljs-comment"># Client code directory.</span>
+                  │   ├── components            <span class="hljs-comment"># Directory of components used throughout the project.</span>
+                  │   ├── navigation            <span class="hljs-comment"># Directory containing navigator, and RootNavigation ref.</span>
+                  │   ├── pages                 <span class="hljs-comment"># Directory containing the screen components inserted into the navigator.</span>
+                  │   │   ├── Feed  
+                  │   │   ├── Forum             <span class="hljs-comment"># Split into subdirectories based on related app features.</span>
+                  │   │   └── ...
+                  │   ├── styles                <span class="hljs-comment"># Directory containing stylesheets for each feature.</span>
+                  │   └── AppContainer.tsx      <span class="hljs-comment"># Top level React.Component with state. Used for managing global components.</span>
+                  ├── services                  <span class="hljs-comment"># Contains all of the business logic for the application.</span>
+                  ├── <span class="hljs-built_in">config</span>.ts                 <span class="hljs-comment"># Config file for the application.</span>
+                  ├── locationList.ts           <span class="hljs-comment"># List of Towns/Cities shown on registration</span>
+                  ├── models.ts                 <span class="hljs-comment"># Data models</span>
+                  └── types.ts                  <span class="hljs-comment"># Typings</span>
+                  </code></pre>
               </div>
             </section>
+            <!-- Firebase -->
             <section class="mt-5" id="firebase">
               <h4 class="title">Firebase</h4>
               <div class="pl-2 pt-3">
@@ -204,6 +219,7 @@
               </div>
 
             </section>
+            <!-- Navigation -->
             <section class="mt-5" id="navigation">
               <h4 class="title">Navigation</h4>
               <div class="pl-2 pt-3">
@@ -230,6 +246,7 @@
               </div>
 
             </section>
+            <!-- Styling -->
             <section class="mt-5" id="styling">
               <h4 class="title">Styling</h4>
               <div class="pl-2 pt-3">
@@ -256,6 +273,7 @@
               </div>
 
             </section>
+            <!-- Linting -->
             <section class="mt-5" id="linting">
               <h4 class="title">Linting and Code Quality</h4>
               <div class="pl-2 pt-3">
@@ -284,7 +302,7 @@
             </section>
           </div>
           <!-- Page Content List -->
-          <div class="col-12 col-md-3 pl-4 d-none d-md-inline h-100">
+          <div class="col-12 col-md-3 pl-4 order-0 order-md-1 h-100 ">
             <div id="sticky-menu" class="p-4">
               <!-- Getting Started -->
               <p class="m-0 p-0"><a href="#getting-started">Getting Started</a></p>
@@ -295,7 +313,6 @@
               <p class="font-italic m-0 p-0 pl-2"><a href="#running-web">Running: Web</a></p>
               <!-- Project Structure -->
               <p class="m-0 p-0 mt-2"><a href="#project-structure">Project Structure</a></p>
-              <p class="font-italic m-0 p-0 pl-2"><a href="#">Sub-Link</a></p>
               <!-- Project Structure -->
               <p class="m-0 p-0 mt-2"><a href="#firebase">Firebase</a></p>
               <p class="font-italic m-0 p-0 pl-2"><a href="#">Sub-Link</a></p>
